@@ -1,19 +1,15 @@
 """
-This module is for your final visualization code.
-After you have done your EDA and wish to create some visualizations for you final jupyter notebook
-A framework for each type of visualization is provided.
+This module is a python framework to handle visualizations.
 """
-# visualization packages
+# importing packages
 import matplotlib.pyplot as plt
 from matplotlib.axes._axes import _log as matplotlib_axes_logger
 from matplotlib.ticker import FuncFormatter
 import seaborn as sns
 
-# Standard data manipulation packages
 import pandas as pd
 import numpy as np
 
-# useful builtin python packages
 import functools
 
 matplotlib_axes_logger.setLevel('ERROR')
@@ -241,7 +237,7 @@ def column_quantile_analysis(cleaned_data, column, num_quantiles=5, save_filenam
 
 def column_quantile_analysis2(cleaned_data, column, num_quantiles=5, format_string=".1f", save_filename=None):
     '''
-    Bar chart showing ROI and profit of each movie category, split by quantile of input column.
+    This bar chart shows ROI and profit of each movie category, split by quantile of input column.
     '''
     quantile_size = 1/num_quantiles
     binned_data = cleaned_data.copy()
@@ -296,27 +292,26 @@ def profitability_movies(cleaned_data, save_filename=None):
     plt.ylabel('Number of Movies')
     plt.title('Profitability of Movies')
     plt.show()
-#     if save_filename:
-#         sns_plot.savefig(save_filename)
+
 
 
 def calculate_average_roi(df):
     '''
-    Average ROI.
+    Mean/Average ROI.
     '''
     return df["profit"].sum() / df["production_budget"].sum()
 
 
 def calculate_average_roi_for_genre(df, genre):
     """
-    Average ROI for genre.
+    Mean/Average ROI for genre.
     """
     return calculate_average_roi(df[df["genres"].str.contains(genre)])
 
         
 def get_genre_counts_roi_and_profit(df):
     """
-    Explode genre string and return statistics based on the genre.
+    Explodey genre string and return statistics based on the genre.
     """
     explodey_data = df.copy()
     explodey_data["genres"] = explodey_data["genres"].str.split(",")
@@ -351,3 +346,6 @@ def genre(movies):
     roi_ax.axhline(avg_roi, ls='--')
 
     return count_ax, roi_ax, profit_ax, avg_roi,counts_and_roi_by_genre
+
+
+# More functions can still be added for more visualizations
